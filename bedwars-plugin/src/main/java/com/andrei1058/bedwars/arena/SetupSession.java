@@ -225,7 +225,7 @@ public class SetupSession implements ISetupSession {
         player.sendMessage(ChatColor.GREEN + "You were teleported to the " + ChatColor.GOLD + getWorldName() + ChatColor.GREEN + "'s spawn.");
         if (getSetupType() == SetupType.ASSISTED && getConfig().getYml().get("waiting.Loc") == null) {
             player.sendMessage("");
-            player.sendMessage(ChatColor.GREEN + "Hello " + player.getDisplayName() + "!");
+            player.sendMessage(ChatColor.GREEN + "Hello " + player.getName() + "!");
             player.sendMessage(ChatColor.WHITE + "Please set the waiting spawn.");
             player.sendMessage(ChatColor.WHITE + "It is the place where players will wait the game to start.");
             player.spigot().sendMessage(Misc.msgHoverClick(ChatColor.BLUE + "     ▪     " + ChatColor.GOLD + "CLICK HERE TO SET THE WAITING LOBBY    " + ChatColor.BLUE + " ▪", ChatColor.LIGHT_PURPLE + "Click to set the waiting spawn.", "/" + BedWars.mainCmd + " setWaitingSpawn", ClickEvent.Action.RUN_COMMAND));

@@ -146,7 +146,7 @@ public class DamageDeathMove implements Listener {
                 .replace("{amount}", new DecimalFormat("00.#").format(((Player) e.getEntity()).getHealth() - e.getFinalDamage()))
                 .replace("{TeamColor}", team.getColor().chat().toString())
                 .replace("{TeamName}", team.getDisplayName(lang))
-                .replace("{PlayerName}", ChatColor.stripColor(p.getDisplayName()));
+                .replace("{PlayerName}", ChatColor.stripColor(p.getName()));
         damager.sendMessage(message);
     }
 
@@ -445,19 +445,19 @@ public class DamageDeathMove implements Listener {
             for (Player on : a.getPlayers()) {
                 Language lang = Language.getPlayerLanguage(on);
                 on.sendMessage(playerKillEvent.getMessage().apply(on).
-                        replace("{PlayerColor}", victimsTeam.getColor().chat().toString()).replace("{PlayerName}", victim.getDisplayName())
+                        replace("{PlayerColor}", victimsTeam.getColor().chat().toString()).replace("{PlayerName}", victim.getName())
                         .replace("{PlayerTeamName}", victimsTeam.getDisplayName(lang))
                         .replace("{KillerColor}", killersTeam == null ? "" : killersTeam.getColor().chat().toString())
-                        .replace("{KillerName}", killer == null ? "" : killer.getDisplayName())
+                        .replace("{KillerName}", killer == null ? "" : killer.getName())
                         .replace("{KillerTeamName}", killersTeam == null ? "" : killersTeam.getDisplayName(lang)));
             }
             for (Player on : a.getSpectators()) {
                 Language lang = Language.getPlayerLanguage(on);
                 on.sendMessage(playerKillEvent.getMessage().apply(on).
-                        replace("{PlayerColor}", victimsTeam.getColor().chat().toString()).replace("{PlayerName}", victim.getDisplayName())
+                        replace("{PlayerColor}", victimsTeam.getColor().chat().toString()).replace("{PlayerName}", victim.getName())
                         .replace("{KillerColor}", killersTeam == null ? "" : killersTeam.getColor().chat().toString())
                         .replace("{PlayerTeamName}", victimsTeam.getDisplayName(lang))
-                        .replace("{KillerName}", killer == null ? "" : killer.getDisplayName())
+                        .replace("{KillerName}", killer == null ? "" : killer.getName())
                         .replace("{KillerTeamName}", killersTeam == null ? "" : killersTeam.getDisplayName(lang)));
             }
 

@@ -852,18 +852,18 @@ public class Arena implements IArena {
                         Language lang = Language.getPlayerLanguage(inGame);
                         inGame.sendMessage(event.getMessage().apply(inGame)
                                 .replace("{PlayerTeamName}", team.getDisplayName(lang))
-                                .replace("{PlayerColor}", team.getColor().chat().toString()).replace("{PlayerName}", p.getDisplayName())
+                                .replace("{PlayerColor}", team.getColor().chat().toString()).replace("{PlayerName}", p.getName())
                                 .replace("{KillerColor}", killerTeam.getColor().chat().toString())
-                                .replace("{KillerName}", lastDamager.getDisplayName())
+                                .replace("{KillerName}", lastDamager.getName())
                                 .replace("{KillerTeamName}", killerTeam.getDisplayName(lang)));
                     }
                     for (Player inGame : getSpectators()) {
                         Language lang = Language.getPlayerLanguage(inGame);
                         inGame.sendMessage(event.getMessage().apply(inGame)
                                 .replace("{PlayerTeamName}", team.getDisplayName(lang))
-                                .replace("{PlayerColor}", team.getColor().chat().toString()).replace("{PlayerName}", p.getDisplayName())
+                                .replace("{PlayerColor}", team.getColor().chat().toString()).replace("{PlayerName}", p.getName())
                                 .replace("{KillerColor}", killerTeam.getColor().chat().toString())
-                                .replace("{KillerName}", lastDamager.getDisplayName())
+                                .replace("{KillerName}", lastDamager.getName())
                                 .replace("{KillerTeamName}", killerTeam.getDisplayName(lang)));
                     }
                     PlayerDrops.handlePlayerDrops(this, p, lastDamager, team, killerTeam, cause, new ArrayList<>(Arrays.asList(p.getInventory().getContents())));
@@ -1850,8 +1850,8 @@ public class Arena implements IArena {
                         if (p.getWorld().equals(getWorld())) {
                             nms.sendTitle(p, getMsg(p, Messages.GAME_END_VICTORY_PLAYER_TITLE), null, 0, 70, 20);
                         }
-                        if (!winners.toString().contains(p.getDisplayName())) {
-                            winners.append(p.getDisplayName()).append(" ");
+                        if (!winners.toString().contains(p.getName())) {
+                            winners.append(p.getName()).append(" ");
                         }
                     }
                     if (winners.toString().endsWith(" ")) {
@@ -1875,21 +1875,21 @@ public class Arena implements IArena {
                                 firstName = e.getKey();
                                 Player onlinePlayer = Bukkit.getPlayerExact(e.getKey());
                                 if (onlinePlayer != null) {
-                                    firstName = onlinePlayer.getDisplayName();
+                                    firstName = onlinePlayer.getName();
                                 }
                                 first = e.getValue();
                             } else if (entry == 1) {
                                 secondName = e.getKey();
                                 Player onlinePlayer = Bukkit.getPlayerExact(e.getKey());
                                 if (onlinePlayer != null) {
-                                    secondName = onlinePlayer.getDisplayName();
+                                    secondName = onlinePlayer.getName();
                                 }
                                 second = e.getValue();
                             } else if (entry == 2) {
                                 thirdName = e.getKey();
                                 Player onlinePlayer = Bukkit.getPlayerExact(e.getKey());
                                 if (onlinePlayer != null) {
-                                    thirdName = onlinePlayer.getDisplayName();
+                                    thirdName = onlinePlayer.getName();
                                 }
                                 third = e.getValue();
                                 break;
