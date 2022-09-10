@@ -20,8 +20,11 @@
 
 package com.andrei1058.bedwars.support.party;
 
+import com.andrei1058.bedwars.api.arena.IArena;
 import com.andrei1058.bedwars.api.language.Messages;
 import com.andrei1058.bedwars.api.party.Party;
+import com.andrei1058.bedwars.arena.Arena;
+import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
@@ -150,6 +153,50 @@ public class Internal implements Party {
     }
 
     @Override
+    public void promotePlayer(Player owner, Player target){
+        Party p = getParty(owner);
+        if (p != null) {
+            p.owner = target;
+        }
+    }
+
+    @Override
+    public void warp(Player owner){
+        Party p = getParty(owner);
+        if (p != null){
+            Location location = owner.getLocation();
+            for (Player p1 : p.members) {
+                if (!p1.equals(owner)  && !Arena.isInArena(p1)){
+                    p1.teleport(location);
+                } else if (!p1.equals(owner)  && Arena.isInArena(p1)  && !Arena.isInArena(owner)) {
+                    IArena arena = Arena.getArenaByPlayer(p1);
+                    arena.removePlayer(p1, true);
+                    p1.teleport(location);
+                }
+
+            }
+        }
+    }
+
+    @Override
+    public void chat(Player player, String message){
+        if (hasParty(player)){
+            for (Party p : Internal.getParites()) {
+                if (p.members.contains(player)){
+                    for (Player p1:p.members) {
+                        if (p1.equals(player))
+                            message.replace(player.getName(), "you");
+
+                        p1.sendMessage(message);
+                    }
+                    break;
+                }
+
+            }
+        }
+    }
+
+    @Override
     public boolean isInternal() {
         return true;
     }
@@ -161,6 +208,7 @@ public class Internal implements Party {
         }
         return null;
     }
+
 
     @NotNull
     @Contract(pure = true)
